@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 @Entity
-@Table(name = "t_event")
+@Table(name = "t_eventservice_event")
 
 public class Event {
 	
@@ -26,6 +26,7 @@ public class Event {
 	private String eventType;
 	private Date eventDate;
 	private String detail;
+	private String endPointName;
 	
 	@JsonBackReference(value = "user")
 	@ManyToOne
@@ -36,13 +37,15 @@ public class Event {
 		super();
 	}
 
-	public Event(Long id, String service, String eventType, Date eventDate, String detail) {
+	public Event(Long id, String service, String eventType, Date eventDate, 
+			String detail, String endPointName) {
 		super();
 		this.id = id;
 		this.service = service;
 		this.eventType = eventType;
 		this.eventDate = eventDate;
 		this.detail = detail;
+		this.endPointName = endPointName;
 	}
 
 	public Long getId() {
@@ -84,10 +87,30 @@ public class Event {
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
+	
+	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+	
+	
+
+	public String getEndPointName() {
+		return endPointName;
+	}
+
+	public void setEndPointName(String endPointName) {
+		this.endPointName = endPointName;
 	}
 
 	@Override
